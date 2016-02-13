@@ -1,0 +1,37 @@
+<h1>New Order</h1>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @cart.line_items.each do |item| %>
+        <tr>
+            <td><%= item.product.image %></td>
+            <td><%= item.product.title %></td>
+            <td><%= sanitize(item.product.description) %></td>
+            <td><%= item.quantity %></td>
+            <td><%= number_to_currency(item.product.price) %></td>
+            <td><%= number_to_currency(item.total_price) %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<br/>
+<div class="pull-right">
+    <span class="text-green">Total: <%= number_to_currency(@cart.total_price) %></span>
+</div>
+
+<%= render 'form' %>
+
+
+
+<%= link_to 'Back', cart_path(@cart) %>

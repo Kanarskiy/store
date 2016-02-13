@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @cart.line_items.each do |item| %>
+        <tr>
+            <td><%= item.product.image %></td>
+            <td><%= item.product.title %></td>
+            <td><%= sanitize(item.product.description) %></td>
+            <td><%= item.quantity %></td>
+            <td><%= number_to_currency(item.product.price) %></td>
+            <td><%= number_to_currency(item.total_price) %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<br/>
+<div class="pull-right">
+    <span class="text-green">Total: <%= number_to_currency(@cart.total_price) %></span>
+</div>
+<br/>
+<br/>
+<br/>
+<%= button_to 'Checkout', new_order_path, method: :get, class: 'btn btn-success pull-right' %>
+<%= button_to 'Empty cart', @cart, method: :delete, class: 'btn btn-danger pull-left', data: {confirm: 'Are you sure?'} %>
+

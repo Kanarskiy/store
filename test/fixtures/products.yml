@@ -11,3 +11,9 @@ two:
   description: MyText
   image: MyString
   price: 9.99
+
+iPhone:
+  title: iPhone 6s
+  description: Apple iPhone 6s 128GB 4EVERYTHING Light med Spotify + Roam Like Home Europa
+  image: MyString
+  price: 699

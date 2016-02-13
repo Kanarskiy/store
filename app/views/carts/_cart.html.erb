@@ -1,0 +1,24 @@
+<h3>Cart</h3>
+<% if @cart.line_items.empty? %>
+    Your cart is empty
+<% else %>
+    <table class="table">
+        <% @cart.line_items.each do |item| %>
+            <% if @current_item == item %>
+                <tr id="current_item">
+            <% else %>
+                <tr>
+            <% end %>
+            <td><%= item.product.title %></td>
+            <td><%= item.quantity %> &times; <%= number_to_currency(item.product.price) %></td>
+            </tr>
+        <% end %>
+    </table>
+    <div class="pull-right">
+        <span class="text-green">Total: <%= number_to_currency(@cart.total_price) %></span>
+    </div>
+    <br/>
+    <br/>
+    <%= button_to 'Empty cart', @cart, method: :delete, class: 'btn btn-danger pull-left', data: {confirm: 'Are you sure?'} %>
+    <%= link_to 'Cart', cart_path(@cart), class: 'btn btn-success pull-right' %>
+<% end %>
