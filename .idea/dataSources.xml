@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2434255150">
+  <component name="DataSourceManagerImpl" format="xml" hash="4085394118">
     <data-source source="LOCAL" name="Rails price_planet: development" uuid="07b19997-d019-4bd9-8f56-26a7e6450546">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
