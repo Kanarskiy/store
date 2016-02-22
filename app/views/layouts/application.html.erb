@@ -7,20 +7,31 @@
     <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller_name %>">
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <%= render 'layouts/header' %>
+            </div>
+        </div>
+    </div>
+</header>
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
-            <ul class="nav nav-pills">
-                <li class="active"><%= link_to 'Home', store_path %></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Messages</a></li>
-            </ul>
-        </div>
         <div class="col-sm-12">
             <%= yield %>
         </div>
     </div>
 </div>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <%= render 'layouts/footer' %>
+            </div>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>
