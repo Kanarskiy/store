@@ -1,24 +1,110 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @product.title %>
+    <strong>Title:</strong>
+    <%= @product.title %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @product.description %>
+    <strong>Description:</strong>
+    <%= @product.description %>
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <%= @product.image %>
+    <strong>Image:</strong>
+    <%= @product.image %>
 </p>
 
 <p>
-  <strong>Price:</strong>
-  <%= @product.price %>
+    <strong>Price:</strong>
+    <%= number_to_currency(@product.price) %>
 </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+
+
+<div class="products-grid row">
+    <div class="item col-sm-4 col-xs-12">
+        <div class="wrapper-hover">
+            <div class="product-image-container">
+                <a class="product-image" itemprop="url" title="<%= @product.title %>" href="">
+                    <img itemprop="image" alt="<%= @product.title %>" src="/assets/img/blazer.jpg">
+                </a>
+                <ul class="product-thumbs">
+                    <li class="product-thumb">
+                        <a href="">
+                            <img alt="" src="/assets/img/blazer_2.jpg">
+                        </a>
+                    </li>
+                    <li class="product-thumb">
+                        <a href="">
+                            <img alt="" src="/assets/img/blazer_6.jpg">
+                        </a>
+                    </li>
+                    <li class="product-thumb">
+                        <a href="">
+                            <img alt="" src="/assets/img/blazer_7.jpg">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="product-info">
+                <h2 class="product-name" itemprop="name">
+                    <a title="<%= @product.description %>" href="#"><%= @product.description %></a>
+                </h2>
+
+                <div class="price-box">
+                    <p class="old-price">
+                        <span class="price-label">Regular Price:</span>
+                        <span class="price"> <%= number_to_currency(@product.price) %> </span>
+                    </p>
+
+                    <p class="special-price">
+                        <span class="price-label">Special Price</span>
+                        <span class="price"> <%= number_to_currency(@product.price) %> </span>
+                    </p>
+                </div>
+                <div class="wrapper-relative">
+                    <div class="wrapper-hover-hiden">
+                        <ul class="configurable-swatch-list configurable-swatch-color clearfix">
+                            <li class="option-beige is-media">
+                                <a class="swatch-link has-image" style="height: 23px; width: 23px;" title="beige" name="beige">
+                                    <span class="swatch-label blue"> </span>
+                                </a>
+                            </li>
+                            <li class="option-beige is-media">
+                                <a class="swatch-link has-image" style="height: 23px; width: 23px;" title="beige" name="beige">
+                                    <span class="swatch-label grey"> </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="actions">
+                            <a class="button btn-details" href="" title="View Details">
+                                <span>
+                                    <span>View Details</span>
+                                </span>
+                            </a>
+                            <ul class="add-to-links">
+                                <li>
+                                    <a class="link-wishlist" href="">Add to Wishlist</a>
+                                </li>
+                                <li>
+                                    <span class="separator">|</span>
+                                    <a class="link-compare" href="">Add to Compare</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="label-product">
+                <span class="new">New</span>
+                <span class="sale">Sale</span>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<%= link_to 'Edit', edit_customer_product_path(current_customer, @product) %> |
+<%= link_to 'Back', customer_products_path(current_customer) %>

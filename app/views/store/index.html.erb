@@ -8,39 +8,101 @@
         </div>
     </div>
     <div class="col-sm-9">
-        <table class="table table-bordered table-hover">
-            <thead>
-            <tr>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th></th>
-            </tr>
-            </thead>
 
-            <tbody>
-            <% cache ['store', Product.latest] do %>
-                <% @products.each do |product| %>
-                    <% cache ['entry', product] do %>
-                        <tr>
-                            <td><%= product.image %></td>
-                            <td><%= product.title %></td>
-                            <td><%= sanitize(product.description) %></td>
-                            <td><%= number_to_currency(product.price) %></td>
-                            <td>
-                                <%= button_to 'Add to Cart', line_items_path(product_id: product),
-                                              class: 'btn btn-success', remote: true %>
-                            </td>
-                        </tr>
+        <% cache ['store', Product.latest] do %>
+            <% i = 0 %>
+            <% @products.each do |product| %>
+                <% cache ['entry', product] do %>
+                    <% if i == 0 %>
+                        <div class="products-grid row">
+                    <% end %>
+                    <div class="item col-sm-4 col-xs-12">
+                        <div class="wrapper-hover">
+                            <div class="product-image-container">
+                                <a class="product-image" itemprop="url" title="<%= product.title %>" href="">
+                                    <img itemprop="image" alt="<%= product.title %>" src="/assets/img/blazer.jpg">
+                                </a>
+                                <ul class="product-thumbs">
+                                    <li class="product-thumb">
+                                        <a href="">
+                                            <img alt="<%= product.title %>" src="/assets/img/blazer_2.jpg">
+                                        </a>
+                                    </li>
+                                    <li class="product-thumb">
+                                        <a href="">
+                                            <img alt="<%= product.title %>" src="/assets/img/blazer_6.jpg">
+                                        </a>
+                                    </li>
+                                    <li class="product-thumb">
+                                        <a href="">
+                                            <img alt="<%= product.title %>" src="/assets/img/blazer_7.jpg">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="product-info">
+                                <h2 class="product-name" itemprop="name">
+                                    <a title="<%= product.description %>" href="#"><%= product.description %></a>
+                                </h2>
+
+                                <div class="price-box">
+                                    <p class="old-price">
+                                        <span class="price-label">Regular Price:</span>
+                                        <span class="price"> <%= number_to_currency(product.price) %> </span>
+                                    </p>
+
+                                    <p class="special-price">
+                                        <span class="price-label">Special Price</span>
+                                        <span class="price"> <%= number_to_currency(product.price) %> </span>
+                                    </p>
+                                </div>
+                                <div class="wrapper-relative">
+                                    <div class="wrapper-hover-hiden">
+                                        <ul class="configurable-swatch-list configurable-swatch-color clearfix">
+                                            <li class="option-beige is-media">
+                                                <a class="swatch-link has-image" style="height: 23px; width: 23px;" title="beige" name="beige">
+                                                    <span class="swatch-label blue"> </span>
+                                                </a>
+                                            </li>
+                                            <li class="option-beige is-media">
+                                                <a class="swatch-link has-image" style="height: 23px; width: 23px;" title="beige" name="beige">
+                                                    <span class="swatch-label grey"> </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="actions">
+                                            <a class="button btn-details" href="" title="View Details">
+                                                    <span>
+                                                        <span>View Details</span>
+                                                    </span>
+                                            </a>
+                                            <ul class="add-to-links">
+                                                <li>
+                                                    <a class="link-wishlist" href="">Add to Wishlist</a>
+                                                </li>
+                                                <li>
+                                                    <span class="separator">|</span>
+                                                    <a class="link-compare" href="">Add to Compare</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="label-product">
+                                <span class="new">New</span>
+                                <span class="sale">Sale</span>
+                            </div>
+                        </div>
+                    </div>
+                    <% i+=1 %>
+                    <% if i == 3 %>
+                        </div>
+                        <% i = 0 %>
                     <% end %>
                 <% end %>
             <% end %>
-            </tbody>
-        </table>
+        <% end %>
     </div>
 </div>
-
-
-<br>
-
+</div>
