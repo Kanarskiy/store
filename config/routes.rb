@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
+
+
     devise_for :customers
     resources :orders
     resources :line_items
     resources :carts
 
-    resources :products
+    resources :customers do
+        resources :products
+    end
+
+    # resources :products, path: '/customers/products'
+
 
     root 'store#index'
 
