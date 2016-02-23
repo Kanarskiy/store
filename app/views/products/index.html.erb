@@ -19,7 +19,7 @@
             <td><%= product.image %></td>
             <td><%= product.title %></td>
             <td><%= sanitize(product.description) %></td>
-            <td><%= product.price %></td>
+            <td><%= number_to_currency(product.price) %></td>
             <td><%= link_to 'Show', customer_product_path(current_customer, product) %></td>
             <td><%= link_to 'Edit', edit_customer_product_path(current_customer, product) %></td>
             <td><%= link_to 'Destroy', customer_product_path(current_customer, product), method: :delete, data: {confirm: 'Are you sure?'} %></td>

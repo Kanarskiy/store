@@ -4,11 +4,7 @@ class ProductsController < ApplicationController
     # GET /products
     # GET /products.json
     def index
-        if customer_signed_in?
-            @products = Product.all
-        else
-            @products = Product.all
-        end
+        @products = Product.where('customer_id = ?', current_customer)
     end
 
     # GET /products/1
@@ -18,7 +14,8 @@ class ProductsController < ApplicationController
 
     # GET /products/new
     def new
-        @product = Product.new
+        @customer = Customer.find(current_customer)
+        @product = @customer.products.build
     end
 
     # GET /products/1/edit
@@ -28,7 +25,9 @@ class ProductsController < ApplicationController
     # POST /products
     # POST /products.json
     def create
-        @product = Product.new(product_params)
+        @customer = Customer.find(current_customer)
+        @product = @customer.products.build(product_params)
+        # @product = Product.new(product_params)
 
         respond_to do |format|
             if @product.save
