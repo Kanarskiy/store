@@ -20,3 +20,13 @@
 .text-green {
     color: #5cb85c;
 }
+a {
+    color: #888888;
+    transition: all 0s ease 0s, all 0.8s ease 0s, all 0s ease-in-out 0s;
+}
+a:hover {
+    background: none;
+    color: #0ab3a3;
+    text-decoration: none;
+    text-underline: none;
+}
